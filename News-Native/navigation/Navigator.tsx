@@ -21,7 +21,7 @@ function AppNavigator() {
   return (
     <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen options={{headerShown: false}} name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="NewsOverview" component={NewsOverview} />
     </Stack.Navigator>
   </NavigationContainer>
