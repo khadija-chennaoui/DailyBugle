@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 function HomeScreen() {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Saved" component={Saved} />
     </Tab.Navigator>
@@ -21,11 +21,11 @@ function HomeScreen() {
 function AppNavigator() {
   return (
     <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen options={{headerShown: false}} name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="NewsOverview" component={NewsOverview} />
-    </Stack.Navigator>
-  </NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen options={{ headerShown: false }} name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="NewsOverview" component={NewsOverview} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

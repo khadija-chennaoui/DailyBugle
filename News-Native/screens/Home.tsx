@@ -28,15 +28,14 @@ const Home = () => {
       await fetch(URL)
         .then((res) => res.json())
         .then((data) => {
-          setNewsData(data.results || {})
+          setNewsData((prev) => [...prev, ...data.results])
           setDetails(data.details)
         })
-      
+
     } catch (err) {
       console.log(err)
     }
   }
-  // console.log(Object.keys(newsData[0]))
   return (
     <View style={styles.container}>
       <Appbar.Header>
@@ -64,25 +63,26 @@ const Home = () => {
         </Button>
       </View>
       <FlatList
+        onEndReached={() => handlePress()}
         style={styles.FlatList}
         data={newsData}
         renderItem={({ item }) =>
-        <Card
-          category={item.category}
-          content={item.content}
-          country={item.country}
-          creator={item.creator}
-          description={item.description}
-          image_url={item.image_url}
-          keywords={item.keywords}
-          language={item.language}
-          link={item.link}
-          pubDate={item.pubDate}
-          source_id={item.source_id}
-          title={item.title}
-          video_url={item.video_url}
-        />
-      } />
+          <Card
+            category={item.category}
+            content={item.content}
+            country={item.country}
+            creator={item.creator}
+            description={item.description}
+            image_url={item.image_url}
+            keywords={item.keywords}
+            language={item.language}
+            link={item.link}
+            pubDate={item.pubDate}
+            source_id={item.source_id}
+            title={item.title}
+            video_url={item.video_url}
+          />
+        } />
     </View>
   )
 }
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   FlatList: {
     flex: 1,
-    height : "auto",
+    height: "auto",
 
   }
 
