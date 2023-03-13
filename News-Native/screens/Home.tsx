@@ -5,11 +5,12 @@ import { Appbar, Chip, Button, useTheme } from 'react-native-paper';
 const categorie = ["Science", "Sports", "Technology", "Food", "Word"]
 import { NewsData } from '../utils/types';
 import Card from '../components/Card';
-// https://newsdata.io/api/1/news?apikey=pub_186538ade6bddbb18171ddac4badae85139f3&language=fr&category=food,science,sports,technology,world 
 const API = "pub_186538ade6bddbb18171ddac4badae85139f3"
 const Home = () => {
   const [newsData, setNewsData] = useState<NewsData[]>([])
   const [selectedCat, setSelectedCat] = useState([])
+  const [details, setDetails] = useState("")
+
   const theme = useTheme()
   const handleSelect = (val: string) => {
     setSelectedCat((prev: string[]) =>
@@ -22,11 +23,15 @@ const Home = () => {
     const URL = `https://newsdata.io/api/1/news?apikey=${API}&country=fr&language=fr${selectedCat.length > 0
       ? `&category=${selectedCat.join()}`
       : ""
-      }`
+      }${details?.length > 0 ? `&page=${details}` : ""}`
     try {
       await fetch(URL)
         .then((res) => res.json())
-        .then((data) => setNewsData(data.results || {}))
+        .then((data) => {
+          setNewsData(data.results || {})
+          setDetails(data.details)
+        })
+      
     } catch (err) {
       console.log(err)
     }
