@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { Appbar, Chip, Button, useTheme } from 'react-native-paper';
 import { componentNavigationProps, NewsData } from '../utils/types';
 import Card from '../components/Card';
-const categorie = ["Science", "Sports", "Technology", "Food", "Word"]
+const categorie = ["Science", "Sports", "Technology", "Food", "Word", "Top"]
 const API = "pub_186538ade6bddbb18171ddac4badae85139f3"
 const Home = (props: componentNavigationProps) => {
   const [newsData, setNewsData] = useState<NewsData[]>([])
@@ -70,11 +70,12 @@ const Home = (props: componentNavigationProps) => {
         renderItem={({ item }) =>
           <Card
             navigation={props.navigation}
+            title={item.title}
+            content={item.content}
+            image_url={item.image_url}
             category={item.category}
             description={item.description}
             image_url={item.image_url}
-            title={item.title}
-            content={item.content}
           />
         } />
     </View>

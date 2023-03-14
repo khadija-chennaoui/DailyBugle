@@ -4,6 +4,7 @@ import { componentNavigationProps, NewsData } from '../utils/types'
 import Details from '../components/Details';
 import { Button } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const getData = async () => {
   try {
     const value = await AsyncStorage.getItem('@NewsData')
@@ -15,24 +16,20 @@ const getData = async () => {
     return
   }
 }
+
 const storeData = async (value: NewsData) => {
   const data: NewsData[] = (await getData()) || []
-  // const parsedValue = JSON.parse(value)
-  !data.find((d) => d.title===value.title) ? data.push(value) : data
-
+  !data.find((d) => d.title === value.title) ? data.push(value) : data
   try {
     const jsonValue = JSON.stringify(data)
     await AsyncStorage.setItem('@NewsData', jsonValue)
   } catch (e) {
-    // saving error
+    return alert('Wrong storing')
   }
 }
 
-
-
-
 const NewsOverview = (props: componentNavigationProps) => {
-  const { title, content, image_url} = props?.route?.params as NewsData;
+  const { title, content, image_url } = props?.route?.params as NewsData;
   props.navigation.setOptions({
     headerRight: () => (
       <Button onPress={() => storeData({ title, content, image_url })}>
@@ -40,7 +37,7 @@ const NewsOverview = (props: componentNavigationProps) => {
       </Button>
     )
   })
-  return <Details title={title} content={content} image_url={image_url} />
+  return ( <Details title={title} content={content} image_url={image_url} /> )
 }
 
 export default NewsOverview

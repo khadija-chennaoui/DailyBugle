@@ -5,7 +5,6 @@ import { Card, Text, useTheme } from "react-native-paper"
 type Props = {
     title: string
     image_url: string
-    description: string
     content: string
 }
 export default function Details(props: Props) {
