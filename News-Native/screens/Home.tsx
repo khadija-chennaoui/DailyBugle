@@ -1,12 +1,13 @@
 //@ts-nocheck
+
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Appbar, Chip, Button, useTheme } from 'react-native-paper';
-const categorie = ["Science", "Sports", "Technology", "Food", "Word"]
-import { NewsData } from '../utils/types';
+import { componentNavigationProps, NewsData } from '../utils/types';
 import Card from '../components/Card';
+const categorie = ["Science", "Sports", "Technology", "Food", "Word"]
 const API = "pub_186538ade6bddbb18171ddac4badae85139f3"
-const Home = () => {
+const Home = (props: componentNavigationProps) => {
   const [newsData, setNewsData] = useState<NewsData[]>([])
   const [selectedCat, setSelectedCat] = useState([])
   const [details, setDetails] = useState("")
@@ -68,19 +69,12 @@ const Home = () => {
         data={newsData}
         renderItem={({ item }) =>
           <Card
+            navigation={props.navigation}
             category={item.category}
-            content={item.content}
-            country={item.country}
-            creator={item.creator}
             description={item.description}
             image_url={item.image_url}
-            keywords={item.keywords}
-            language={item.language}
-            link={item.link}
-            pubDate={item.pubDate}
-            source_id={item.source_id}
             title={item.title}
-            video_url={item.video_url}
+            content={item.content}
           />
         } />
     </View>

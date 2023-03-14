@@ -2,13 +2,28 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { NewsData } from '../utils/types'
 import { Card, useTheme } from 'react-native-paper'
-
-export default function Cards(props: NewsData) {
+import { NavigationProp, Route } from '@react-navigation/native'
+type Props = {
+    title: string
+    image_url: string
+    description: string
+    content: string
+    navigation: NavigationProp<Route>
+}
+export default function Cards(props: Props) {
     const theme = useTheme()
-    console.log(props.image_url)
+    const handlePress = () => {
+        props.navigation.navigate("NewsOverview", {
+            title: props.title,
+            description: props.description,
+            image_url: props.image_url,
+            content: props.content
+        })
+    }
+
     return (
         <ScrollView>
-            <Pressable onPress={() => alert('Pressed')}>
+            <Pressable onPress={handlePress}>
                 <Card style={{
                     marginVertical: 10,
                     backgroundColor: theme.colors.elevation.level5
