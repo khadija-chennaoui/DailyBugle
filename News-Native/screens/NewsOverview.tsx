@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import React from 'react'
 import { componentNavigationProps, NewsData } from '../utils/types'
 import Details from '../components/Details';
@@ -32,8 +32,8 @@ const NewsOverview = (props: componentNavigationProps) => {
   const { title, content, image_url } = props?.route?.params as NewsData;
   props.navigation.setOptions({
     headerRight: () => (
-      <Button onPress={() => storeData({ title, content, image_url })}>
-        Save
+      <Button style={{ backgroundColor: "#604859" }} onPress={() => storeData({ title, content, image_url })}>
+        <Text style={{color: 'white'}}>Save</Text>
       </Button>
     )
   })

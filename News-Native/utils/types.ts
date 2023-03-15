@@ -1,4 +1,5 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native"
+
 export type NewsData = {
     title: string;
     link?: string;

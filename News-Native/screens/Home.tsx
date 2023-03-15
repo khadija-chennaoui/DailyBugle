@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import React, { useState } from 'react'
 import { Appbar, Chip, Button, useTheme } from 'react-native-paper';
 import { componentNavigationProps, NewsData } from '../utils/types';
@@ -46,7 +46,7 @@ const Home = (props: componentNavigationProps) => {
         {categorie.map((e) =>
           <Chip key={e}
             mode="outlined" style={styles.chipe}
-            textStyle={{ fontWeight: "400", color: "white", padding: 1 }}
+            textStyle={{ fontWeight: "400", color: "#604859", padding: 1 }}
             showSelectedOverlay
             selected={selectedCat.find((c) => e === c) ? true : false}
             onPress={() => handleSelect(e)}
@@ -57,7 +57,7 @@ const Home = (props: componentNavigationProps) => {
         <Button
           mode="outlined"
           style={styles.button}
-          labelStyle={{ fontSize: 14, margin: "auto" }}
+          labelStyle={{ fontSize: 14, margin: "auto", color: 'white' }}
           icon={"sync"}
           onPress={handlePress}>
           Refrech
@@ -86,6 +86,7 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F5F1F2'
   },
   filter: {
     flexDirection: 'row',
@@ -95,16 +96,20 @@ const styles = StyleSheet.create({
   chipe: {
     marginHorizontal: 5,
     marginVertical: 5,
+    backgroundColor: "#F5F1F2",
+    borderColor: '#604859'
   },
   button: {
     maxWidth: 400,
     padding: 0,
     maxHeight: 40,
+    backgroundColor: "#604859",
   },
   FlatList: {
     flex: 1,
     height: "auto",
-
+    backgroundColor: "#EBE1E4",
+    marginHorizontal: 10
   }
 
 })

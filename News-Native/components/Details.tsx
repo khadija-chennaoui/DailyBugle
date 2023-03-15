@@ -12,13 +12,13 @@ export default function Details(props: Props) {
     return (
         <ScrollView>
             <Text
-                style={{ color: "black", marginVertical: 10 }}
+                style={{ color: "black", marginVertical: 10, marginHorizontal: 10 }}
                 variant="headlineMedium">
                 {props.title}
             </Text>
-            <Card style={{ backgroundColor: theme.colors.background }}
+            <Card style={{ backgroundColor: '#EBE1E4', marginTop: 10, marginHorizontal: 2 }}
                 contentStyle={{ width: Dimensions.get("window").width }}>
-                {props.image_url && (<Card.Cover source={{ uri: props.image_url }}></Card.Cover>)}
+                {props.image_url && (<Card.Cover source={{ uri: props.image_url }} style={{ marginHorizontal: 10, borderColor:'#604859'}}></Card.Cover>)}
                 <Card.Content>
                     <Text
                         textBreakStrategy='highQuality'
@@ -26,7 +26,6 @@ export default function Details(props: Props) {
                         style={{ textAlign: "left", marginVertical: 10 }}
                     >
                         {props.content}
-                        {/* {props.content.length === 0 ? "No Content here" : props.content} */}
                     </Text>
                 </Card.Content>
             </Card>
